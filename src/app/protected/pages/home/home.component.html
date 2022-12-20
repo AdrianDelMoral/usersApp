@@ -1,0 +1,59 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav
+        mode="push">
+        <mat-toolbar color="primary">
+            <span>Menú</span>
+
+            <span class="spacer"></span>
+
+            <button mat-icon-button
+                (click)="sidenav.toggle()">
+                <mat-icon>highlight_off</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-nav-list role="list">
+            <a routerLink="/list/users"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Listado de Usuarios</span>
+            </a>
+
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-toolbar color="primary"
+        fxLayoutAlign="space-between center">
+        <button mat-icon-button
+            (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span class="spacer"></span>
+
+
+        <div class="align-content-end">
+            <button mat-button
+                [matMenuTriggerFor]="menu">
+
+                <!-- <img class="img_avatar" src="{{userLoged.avatar}}"> -->
+                <img class="img_avatar"
+                    src="https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos.jpg">
+
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item
+                    (click)="logout()">
+                    <span class="bi bi-box-arrow-right">Logout</span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>

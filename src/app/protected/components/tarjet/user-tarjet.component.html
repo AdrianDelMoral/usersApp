@@ -1,0 +1,23 @@
+<mat-card class="my-card_directive p-4">
+    <mat-card-header>
+        <div mat-card-avatar
+            [ngStyle]="getStyles(user)"
+            class="img_avatar_list">
+        </div>
+        <mat-card-title fxMargin="5px">
+            {{ user.id }}
+        </mat-card-title>
+        <mat-card-subtitle>{{ user.first_name + ' ' + user.last_name }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="text-center">
+        <p>{{ user.email }}</p>
+    </mat-card-content>
+    <mat-card-actions class="d-flex justify-content-around">
+        <button mat-flat-button
+            color="accent"
+            type="button"
+            class="btn btn-info"
+            routerLink="/list/users/{{user.id}}">Info User</button>
+
+    </mat-card-actions>
+</mat-card>

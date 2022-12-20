@@ -1,0 +1,9 @@
+.img_avatar {
+    border: 1px solid #111;
+    border-radius: 30%;
+    object-fit: cover;
+    object-position: center center;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+

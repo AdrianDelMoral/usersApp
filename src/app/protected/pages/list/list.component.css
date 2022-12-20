@@ -1,0 +1,21 @@
+.card-title {
+    font-size: 30px;
+    font-weight: 500;
+    color: #eeeeee;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.bg-list {
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(1px);
+}
+
+.text-light {
+    color: #eeeeee !important;
+}
+
+.my-card {
+    background: #4848df;
+    width: 100%;
+}

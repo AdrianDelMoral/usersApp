@@ -1,0 +1,16 @@
+<h1>¿Está Seguro?</h1>
+<hr>
+<p>
+    Está a punto de borrar a {{ user.first_name }}
+    <br>
+    ¿Desea Continuar?
+</p>
+
+<div>
+    <button mat-raised-button
+        (click)="deleteUser()"
+        color="warn">¡Si, Borrar!</button>
+
+    <button mat-raised-button
+        (click)="close()">Cancelar</button>
+</div>
