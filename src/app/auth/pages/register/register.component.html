@@ -4,20 +4,21 @@
     (ngSubmit)="register()">
 
     <span class="login100-form-title p-b-49">
-        New User
+        Register
     </span>
 
-    <div class="wrap-input100 m-b-23">
+    <div class="wrap-input100">
         <span class="label-input100">Email</span>
-        <input type="email"
-            class="input100"
+        <input class="input100"
+            type="email"
             formControlName="email"
-            placeholder="Ingrese su email">
+            placeholder="Ingrese su Email">
     </div>
     <span class="form-text text-danger"
         *ngIf="campoNoValido('email')">
         {{ emailErrorMsg }}
     </span>
+    <div class="text-right p-t-8 p-b-31"></div>
 
     <div class="wrap-input100">
         <span class="label-input100">Password</span>
@@ -30,8 +31,8 @@
         *ngIf="campoNoValido('password')">
         {{ passwordErrorMsg }}
     </span>
-
     <div class="text-right p-t-8 p-b-31"></div>
+
 
     <div class="container-login100-form-btn">
         <div class="wrap-login100-form-btn">
