@@ -1,12 +1,13 @@
-<h1 class="my-5">Listado de Usuarios</h1>
-<mat-divider></mat-divider>
-<br>
-<div class="container">
-    <div class="row">
-        <div *ngFor="let user of users"
-            class="col-12 col-md-6 col-lg-4">
-            <app-user-tarjet class="my-card"
-                [user]="user"></app-user-tarjet>
+<div class="mt-5">
+    <h1>Listado de Usuarios</h1>
+    <hr style="color:#69f0ae;" />
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let user of users"
+                class="col-12 col-md-6 col-lg-4">
+                <app-user-tarjet class="my-card"
+                    [user]="user"></app-user-tarjet>
+            </div>
         </div>
     </div>
 </div>

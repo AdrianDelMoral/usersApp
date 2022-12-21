@@ -12,9 +12,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  public emailPattern: string = "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  private emailPattern: string = "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
-  loginForm: FormGroup = this.fb.group({
+  public loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, , Validators.pattern(this.emailPattern)]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
@@ -27,14 +27,20 @@ export class LoginComponent {
     this.loginForm.reset({
       email: 'eve.holt@reqres.in',
       password: 'cityslicka'
-    })
+    });
   }
+
   // Obtiene el valor del formulario para comprobarlo
-  campoNoValido(campo: string) {
+  public campoNoValido(campo: string) {
     return this.loginForm.get(campo)?.invalid
-      && this.loginForm.get(campo)?.touched
+      && this.loginForm.get(campo)?.touched;
   }
-  // Envia el tipo de error personalizado a su variable correspondiente del HTML
+
+  /** 
+   * Getter para los errores, que devolverá un String
+   * en base al tipo de error que tengamos 
+   * en el formulario en el input de email
+   */
   get emailErrorMsg(): string {
     const errors = this.loginForm.get('email')?.errors;
 
@@ -48,9 +54,15 @@ export class LoginComponent {
 
     return '';
   }
-  // Envia el tipo de error personalizado a su variable correspondiente del HTML
+
+  /** 
+   * Getter para los errores, que devolverá un String
+   * en base al tipo de error que tengamos 
+   * en el formulario en el input de password
+   */
   get passwordErrorMsg(): string {
     const errors = this.loginForm.get('password')?.errors;
+
     if (errors?.['required']) {
       return 'La Contraseña es Obligatoria';
     }
@@ -58,24 +70,23 @@ export class LoginComponent {
     if (errors?.['minlength']) {
       return 'La Contraseña Debe Tener Más de 6 Carácteres';
     }
+
     return '';
   }
 
-  login() {
+  /** Método para iniciar sesión que comprobará 
+   * si es una respuesta exitosa, enviará al usuario al home de la aplicación
+   * o recibimos por el contrario un error 
+   */
+  public login() {
     const { email, password } = this.loginForm.value;
 
     this.authService.login(email, password)
       .subscribe(resp => {
-        // console.log('login resp: ', resp); // devolverá el usuario autenticado
-
-        if (resp.token) { // si la respuesta, devuelve un token, podrá entrar
-          
-          // navega a la pantalla principal de la app si existe el usuario
+        if (resp.token) {
           this.router.navigateByUrl('/list/users');
         } else {
-          
-          // Mostrará el msg de error, con una alerta:
-          Swal.fire('Error', resp, 'error')
+          Swal.fire('', resp, 'error')
         }
       });
   }

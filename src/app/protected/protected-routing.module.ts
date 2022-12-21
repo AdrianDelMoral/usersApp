@@ -14,7 +14,6 @@ const routes: Routes = [
         component: ListComponent
       },
       {
-        // aqui va a haber un num
         path: 'users/:id',
         component: UserComponent
       },

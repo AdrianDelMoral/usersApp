@@ -12,10 +12,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  public emailPattern: string = "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  private emailPattern: string = "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
-  // Usar para ver que funciona
-  registerForm: FormGroup = this.fb.group({
+  public registerForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
@@ -26,17 +25,22 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm.reset({
-      email: 'eve.holt@reqres.in',
-      password: 'cityslicka'
+      email: '',
+      password: ''
     })
   }
+
   // Obtiene el valor del formulario para comprobarlo
-  campoNoValido(campo: string) {
+  public campoNoValido(campo: string) {
     return this.registerForm.get(campo)?.invalid
       && this.registerForm.get(campo)?.touched
   }
 
-  // Envia el tipo de error personalizado a su variable correspondiente del HTML
+  /** 
+   * Getter para los errores, que devolverá un String
+   * en base al tipo de error que tengamos 
+   * en el formulario en el input de email
+   */
   get emailErrorMsg(): string {
     const errors = this.registerForm.get('email')?.errors;
 
@@ -51,9 +55,14 @@ export class RegisterComponent implements OnInit {
     return '';
   }
 
-  // Envia el tipo de error personalizado a su variable correspondiente del HTML
+  /** 
+   * Getter para los errores, que devolverá un String
+   * en base al tipo de error que tengamos 
+   * en el formulario en el input de password
+   */
   get passwordErrorMsg(): string {
     const errors = this.registerForm.get('password')?.errors;
+    
     if (errors?.['required']) {
       return 'Password is Required';
     }
@@ -65,16 +74,18 @@ export class RegisterComponent implements OnInit {
     return '';
   }
 
-  register() {
+  /** Método para iniciar sesión que comprobará 
+   * si es una respuesta exitosa, enviará al usuario al home de la aplicación
+   * o recibimos por el contrario un error 
+   */
+  public register() {
     const { email, password } = this.registerForm.value;
 
     this.authService.register(email, password)
       .subscribe(resp => {
-        if (resp.token) { // si la respuesta, devuelve un token, podrá entrar
-          // navega a la pantalla principal de la app si existe el usuario
+        if (resp.token) {
           this.router.navigateByUrl('/list/users');
         } else {
-          // Mostrará el msg de error, con una alerta:
           Swal.fire('Error', resp, 'error')
         }
       });

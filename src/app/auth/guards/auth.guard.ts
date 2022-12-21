@@ -24,15 +24,6 @@ export class AuthGuard implements CanActivate, CanLoad {
           }
         })
       )
-    /* if (this.authService.authUser.token) {
-      return true;
-    }
-    
-    console.log('bloqueado por el AuthGuard - CanActivate');
-    if (!this.authService.authUser.token) {
-      this.router.navigate(['./auth/login'])      
-    }
-    return false; */
   }
 
   canLoad(
@@ -47,15 +38,5 @@ export class AuthGuard implements CanActivate, CanLoad {
           }
         })
       )
-
-    /* if (this.authService.authUser.token) {
-      return true;
-    }
-    
-    console.log('bloqueado por el AuthGuard - CanLoad');
-    if (!this.authService.authUser.token) {
-      this.router.navigate(['./auth/login'])      
-    }
-    return false; */
   }
 }

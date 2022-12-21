@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersListService {
+export class UserService {
 
   public usersList: User[] = [];
 
@@ -16,15 +16,18 @@ export class UsersListService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<UsersList> {
+  // Servicio que devolverá todos los usuarios de la api(que se ha comprobado que en total son 12)
+  public getUsers(): Observable<UsersList> {
     return this.http.get<UsersList>(`${this.baseUrl}/users?page=1&per_page=12`)
-  } 
-
-  getUserById(id: number): Observable<UserResponse> {
+  }
+  
+  // Recibirá un id por el que posteriormente devolverá los datos de el usuario al cual corresponda ese id
+  public getUserById(id: number): Observable<UserResponse> {
     return this.http.get<UserResponse>(`${this.baseUrl}/users/${id}`)
   }
   
-  deleteUser(id: number)   {
+  // Recibirá un id por el que posteriormente eliminará el usuario al cual corresponda ese id
+  public deleteUser(id: number) {
     return this.http.delete(`${this.baseUrl}/users/${id}`)
   }
 

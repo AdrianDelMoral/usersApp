@@ -6,7 +6,7 @@ import { switchMap } from 'rxjs';
 import { UserTarjetComponent } from '../../components/tarjet/user-tarjet.component';
 
 import { User } from '../../interface/users.interface';
-import { UsersListService } from '../../services/users.service';
+import { UserService } from '../../services/users.service';
 import { ConfirmComponent } from '../../components/confirm/confirm.component';
 
 
@@ -22,13 +22,12 @@ export class UserComponent implements OnInit {
     */
   user!: User;
 
-  infoUser(user: User) {
-    console.log(this.usersListService.getUserById(user.id));
-    return this.usersListService.getUserById(user.id);
+  public infoUser(user: User) {
+    return this.userService.getUserById(user.id);
   }
 
   constructor(private activatedRoute: ActivatedRoute,
-    private usersListService: UsersListService,
+    private userService: UserService,
     private router: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog) { }
@@ -36,24 +35,22 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
-        // Recibe, lo que el activatedRoute(o observable anterior) está recibiendo
+        // Recibe, lo que el activatedRoute esté recibiendo
         switchMap(
-          //Para usar el servicio con el switchMap, usaremos un nuevo observable, que es el servicio
-          ({ id }) => this.usersListService.getUserById(id))
+          ({ id }) => this.userService.getUserById(id))
       )
       .subscribe(user => {
         this.user = user.data;
       })
   }
 
-  volverAlListado() {
-    this.router.navigate(['/list/users'])
-  }
-
-
-  /*==========================================*/
-
-  deleteUser() {
+  /**
+   * Eliminará el usuario, lanzando primero un dialog que tendrá dos botones (cancelar y eliminar)
+   * Esto comprobará desùes de cerrar, si se a elegido borrar, o no el usuario.
+   * Si se a eliminado, lo indicará con el primer if,
+   * Si no se a eliminado, hará también ver al usuario que no se a eliminado el usuario que estaba viendo
+   */
+  public deleteUser() {
     // Hacer la pregunta, con el servicio de dialog
     const dialog = this.dialog.open(ConfirmComponent, {
       width: '250px',
@@ -62,28 +59,29 @@ export class UserComponent implements OnInit {
 
     dialog.afterClosed().subscribe( // despues de cerrar, se suscribirá y nos enviará la resultado
       (result: boolean) => {
-        console.log('antes del if(result)', result)
 
         if (result === true) {
-          console.log('dentro del if(result)', result)
-
-          this.usersListService.deleteUser(this.user.id)
+          this.userService.deleteUser(this.user.id)
             .subscribe(() => {
-              console.log('Usuario que eliminado: ', this.user)
               this.router.navigate(['/list/users']),
-                this.mostrarSnackBar(`User '${this.user.first_name}' Deleted Correctly`);
+                this.showSnackBar(`User '${this.user.first_name}' Deleted Correctly`);
             })
         } else {
-          // Si no desea eliminarlo, indicará que el usuario 'X' no se ha eliminado
-          return this.mostrarSnackBar(`User '${this.user.first_name}' can't Deleted`);
+          return this.showSnackBar(`User '${this.user.first_name}' can't Deleted`);
         }
+
       }
     )
   }
 
-  mostrarSnackBar(mensaje: string) {
+  /**
+   * Recibirá un mensaje, que se enviará una vez se llame a este método, 
+   * y lo mostrará con una duración de 3 segundos
+   * @param mensaje 
+   */
+  private showSnackBar(mensaje: string) {
     this.snackBar.open(mensaje, ' Okay', {
-      duration: 15000
+      duration: 3000
     })
   }
 

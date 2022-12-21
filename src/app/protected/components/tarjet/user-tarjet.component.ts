@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../interface/users.interface';
-import { UsersListService } from '../../services/users.service';
+import { UserService } from '../../services/users.service';
 
 @Component({
   selector: 'app-user-tarjet',

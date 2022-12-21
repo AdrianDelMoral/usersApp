@@ -1,34 +1,25 @@
-<div class="card card-custom bg-dark m-3 border-white border-0">
+<div class="card card-custom bg-dark m-3 border ">
     <div class="d-flex justify-content-center">
         <img class="card-custom-img img_avatar_list"
             [ngStyle]="getStyles(user)">
     </div>
-    <div class="card-body"
-        style="overflow-y: auto">
-        <div class="list-group border text-light">
-            <div class="list-group-item list-group-item-action bg-dark text-light d-flex justify-content-around"
-                aria-current="true">
-                <p class="mb-1">Id:</p>
-                <small>{{ user.id }}</small>
+    <div class="card-body">
+        <div class="text-light">
+            <div class="bg-dark text-light row mx-0">
+                <div class="col-6"><span>First Name:</span></div>
+                <div class="col-6 text-end"><small>{{ user.first_name }}</small></div>
             </div>
-            <div class="list-group-item list-group-item-action bg-dark text-light d-flex justify-content-around"
-                aria-current="true">
-                <p class="mb-1">First Name:</p>
-                <small>{{ user.first_name }}</small>
+            <div class="bg-dark text-light row my-3 mx-0">
+                <div class="col-6"><span>Last Name:</span></div>
+                <div class="col-6 text-end"><small>{{ user.last_name }}</small></div>
             </div>
-            <div class="list-group-item list-group-item-action bg-dark text-light d-flex justify-content-around"
-                aria-current="true">
-                <p class="mb-1">Last Name:</p>
-                <small>{{ user.last_name }}</small>
-            </div>
-            <div class="list-group-item list-group-item-action bg-dark text-light d-flex justify-content-around"
-                aria-current="true">
-                <p class="mb-1">Email:</p>
-                <small>{{ user.email }}</small>
+            <div class="bg-dark text-light row mx-0">
+                <div class="col-5 pl-3"><span>Email:</span></div>
+                <div class="col-7 text-end"><small>{{ user.email }}</small></div>
             </div>
         </div>
     </div>
-    <div class=" m-3 d-flex justify-content-center">
+    <div class="m-3 d-flex justify-content-center">
         <button mat-flat-button
             color="accent"
             type="button"
