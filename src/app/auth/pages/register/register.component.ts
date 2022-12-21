@@ -86,7 +86,7 @@ export class RegisterComponent implements OnInit {
         if (resp.token) {
           this.router.navigateByUrl('/list/users');
         } else {
-          Swal.fire('Error', resp, 'error')
+          Swal.fire('', resp, 'error')
         }
       });
   }
