@@ -25,8 +25,8 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm.reset({
-      email: 'eve.holt@reqres.in',
-      password: 'cityslicka'
+      email: '',
+      password: ''
     });
   }
 
