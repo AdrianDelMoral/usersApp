@@ -1,23 +1,38 @@
-<mat-card class="my-card_directive p-4">
-    <mat-card-header>
-        <div mat-card-avatar
-            [ngStyle]="getStyles(user)"
-            class="img_avatar_list">
+<div class="card card-custom bg-dark m-3 border-white border-0">
+    <div class="d-flex justify-content-center">
+        <img class="card-custom-img img_avatar_list"
+            [ngStyle]="getStyles(user)">
+    </div>
+    <div class="card-body"
+        style="overflow-y: auto">
+        <div class="list-group border text-light">
+            <div class="list-group-item list-group-item-action bg-dark text-light d-flex justify-content-around"
+                aria-current="true">
+                <p class="mb-1">Id:</p>
+                <small>{{ user.id }}</small>
+            </div>
+            <div class="list-group-item list-group-item-action bg-dark text-light d-flex justify-content-around"
+                aria-current="true">
+                <p class="mb-1">First Name:</p>
+                <small>{{ user.first_name }}</small>
+            </div>
+            <div class="list-group-item list-group-item-action bg-dark text-light d-flex justify-content-around"
+                aria-current="true">
+                <p class="mb-1">Last Name:</p>
+                <small>{{ user.last_name }}</small>
+            </div>
+            <div class="list-group-item list-group-item-action bg-dark text-light d-flex justify-content-around"
+                aria-current="true">
+                <p class="mb-1">Email:</p>
+                <small>{{ user.email }}</small>
+            </div>
         </div>
-        <mat-card-title fxMargin="5px">
-            {{ user.id }}
-        </mat-card-title>
-        <mat-card-subtitle>{{ user.first_name + ' ' + user.last_name }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="text-center">
-        <p>{{ user.email }}</p>
-    </mat-card-content>
-    <mat-card-actions class="d-flex justify-content-around">
+    </div>
+    <div class=" m-3 d-flex justify-content-center">
         <button mat-flat-button
             color="accent"
             type="button"
             class="btn btn-info"
             routerLink="/list/users/{{user.id}}">Info User</button>
-
-    </mat-card-actions>
-</mat-card>
+    </div>
+</div>

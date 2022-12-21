@@ -67,19 +67,13 @@ export class RegisterComponent implements OnInit {
 
   register() {
     const { email, password } = this.registerForm.value;
-    console.log(this.registerForm.value);
-    console.log(this.registerForm.valid);
 
     this.authService.register(email, password)
       .subscribe(resp => {
-        // console.log('login resp: ', resp); // devolverá el usuario autenticado
-
         if (resp.token) { // si la respuesta, devuelve un token, podrá entrar
-
           // navega a la pantalla principal de la app si existe el usuario
           this.router.navigateByUrl('/list/users');
         } else {
-
           // Mostrará el msg de error, con una alerta:
           Swal.fire('Error', resp, 'error')
         }

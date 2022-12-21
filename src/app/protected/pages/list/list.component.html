@@ -1,9 +1,12 @@
 <h1 class="my-5">Listado de Usuarios</h1>
 <mat-divider></mat-divider>
 <br>
-<mat-grid-list cols="3" rowHeight="20em" gutterSize="4em">
-
-    <mat-grid-tile *ngFor="let user of users">
-        <app-user-tarjet class="my-card" [user]="user"></app-user-tarjet>
-    </mat-grid-tile>
-</mat-grid-list>
+<div class="container">
+    <div class="row">
+        <div *ngFor="let user of users"
+            class="col-12 col-md-6 col-lg-4">
+            <app-user-tarjet class="my-card"
+                [user]="user"></app-user-tarjet>
+        </div>
+    </div>
+</div>

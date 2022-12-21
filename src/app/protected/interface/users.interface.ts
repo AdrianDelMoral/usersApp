@@ -13,8 +13,3 @@ export interface User {
     last_name:  string;
     avatar:     string;
 }
-
-export interface Support {
-    url:  string;
-    text: string;
-}

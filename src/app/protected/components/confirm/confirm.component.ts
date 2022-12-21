@@ -4,8 +4,7 @@ import { User } from '../../interface/users.interface';
 
 @Component({
   selector: 'app-confirm',
-  templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.css']
+  templateUrl: './confirm.component.html'
 })
 export class ConfirmComponent implements OnInit {
 

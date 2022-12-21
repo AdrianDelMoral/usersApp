@@ -6,16 +6,7 @@
 }
 
 
-.bg-list {
-    background-color: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(1px);
-}
-
-.text-light {
-    color: #eeeeee !important;
-}
-
-.my-card {
+/* .my-card {
     background: #4848df;
     width: 100%;
-}
+} */

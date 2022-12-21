@@ -17,7 +17,5 @@ export class UserTarjetComponent {
       backgroundImage: `url('${user.avatar}')`
     };
   }
-
-
   constructor() { }
 }
