@@ -1,27 +1,19 @@
 # UsersApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+Este proyecto a sido generado con [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
-## Development server
+## Servidor de Pruebas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Primero instalar las dependencias, una vez descargado o hecho la copia del repositorio, con el comando `npm i`
 
-## Code scaffolding
+Posteriormente usar el comando `npm run start` para tener nuestro servidor de pruebas. 
+Nos llevará a `http://localhost:4200/`. 
+La aplicación automaticamente se recargará si hacemos cambios en el código.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## En el siguiente Link podreis probar la aplicación en funcionamiento
+
+[Link para probar la Aplicación UsersApp](https://usersapp-quasar.netlify.app/).
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run `npm run build-prod` to build the project. The build artifacts will be stored in the `dist/` directory.
